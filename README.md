@@ -1,38 +1,87 @@
-# Projeto de Infraestrutura de Rede: Supermercado Colina
+<div align="center">
 
-## 📋 Sobre o Projeto
-[cite_start]Este projeto consiste no planejamento e simulação de uma infraestrutura de rede completa para uma rede de supermercados fictícia denominada **Colina**, localizada em Curitiba-PR[cite: 7, 8]. [cite_start]O objetivo foi integrar conhecimentos de redes locais (LAN), interconexão de unidades e Internet das Coisas (IoT) em um cenário empresarial realístico[cite: 2, 4].
+<a href="https://gotardon1.github.io/GotardoN1/#projeto/colina">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/GotardoN1/GotardoN1/main/assets/projetos/colina-dark.svg">
+    <img src="https://raw.githubusercontent.com/GotardoN1/GotardoN1/main/assets/projetos/colina-light.svg" width="100%" alt="Rede do Supermercado Colina">
+  </picture>
+</a>
 
-[cite_start]O projeto abrange três unidades principais estrategicamente conectadas[cite: 8]:
-* [cite_start]**Matriz:** Unidade completa com setores de atendimento, caixa, padaria e açougue[cite: 17].
-* [cite_start]**Centro de Operações (Escritório Administrativo):** Foco em gestão, servidores e RH[cite: 12].
-* [cite_start]**Filial:** Unidade de menor porte otimizada para praticidade[cite: 10].
+<img src="https://img.shields.io/badge/Cisco-Packet_Tracer-1BA0D7?style=flat-square&logo=cisco&logoColor=white&labelColor=161b22" alt="Cisco Packet Tracer">
+<img src="https://img.shields.io/badge/IPv6-2dd4bf?style=flat-square&labelColor=161b22" alt="IPv6">
+<img src="https://img.shields.io/badge/IoT-f5b84b?style=flat-square&labelColor=161b22" alt="IoT">
+<img src="https://img.shields.io/badge/UNIANDRADE-2020-8b949e?style=flat-square&labelColor=161b22" alt="UNIANDRADE 2020">
 
-## 🛠️ Tecnologias e Ferramentas Utilizadas
-* [cite_start]**Simulador:** Cisco Packet Tracer[cite: 6].
-* [cite_start]**Protocolos de Endereçamento:** IPv6 (Unicast-routing e endereçamentos Link-Local FE80::1)[cite: 17, 20].
-* [cite_start]**Serviços de Rede:** DNS, WEB, SMTP e POP3 para comunicação interna e externa[cite: 15, 16].
-* [cite_start]**Hardware Simulado:** Roteadores, Switches, Hubs e Dispositivos IoT[cite: 6].
+**[Ver no portfólio interativo](https://gotardon1.github.io/GotardoN1/#projeto/colina)** · **[Perfil](https://github.com/GotardoN1)**
 
-## 🏗️ Arquitetura da Rede
-[cite_start]A rede foi dividida em clusters geográficos para otimização do tráfego e funcionalidade[cite: 10, 11].
+</div>
 
-### Destaques Técnicos:
-* [cite_start]**Segmentação Administrativa:** O escritório foi subdividido em setores como Diretoria, Gerência, RH e Marketing, garantindo segurança e organização[cite: 12].
-* [cite_start]**Integração IoT:** Implementação de automação residencial/comercial, incluindo portas automáticas e ar-condicionado controlados pela rede[cite: 11].
-* [cite_start]**Servidores de Comunicação:** Configuração de servidores de e-mail (SMTP/POP3) para troca de informações segura entre as unidades[cite: 16].
-* [cite_start]**Transição de Hardware:** Substituição estratégica de Hubs por Switches para melhor gerenciamento de pacotes e suporte a IPv6[cite: 14].
+## Sobre
 
-## 📂 Organização das Unidades
-* **Escritório Administrativo:** Gateway padrão `FE80::1`. [cite_start]Contém o núcleo de servidores (WEB/DNS)[cite: 15, 17].
-* [cite_start]**Matriz:** Estruturada com setores de Granel, Padaria, Açougue e monitoramento por câmeras[cite: 17, 18].
-* [cite_start]**Filial:** Sistema autônomo baseado na planta da matriz, mas em escala reduzida, utilizando equipamentos padronizados para facilitar a manutenção[cite: 10, 20].
+Planejamento e simulação da infraestrutura de rede completa de uma rede de supermercados fictícia, o **Supermercado Colina**, em Curitiba/PR. O objetivo foi juntar num cenário empresarial realista três assuntos: redes locais (LAN), interligação de unidades e Internet das Coisas (IoT).
 
-## 🚀 Como Visualizar
-1. Baixe o arquivo `.pkt` na pasta `/packet-tracer-files`.
-2. Abra no **Cisco Packet Tracer** (versão recomendada: 8.x).
-3. Consulte o relatório completo na pasta `/docs` para detalhes de comandos de configuração.
+## Topologia
+
+```mermaid
+flowchart TB
+    subgraph ESC[🏢 Escritório administrativo · centro de operações]
+        direction LR
+        SRV[🖥️ Servidores<br>WEB · DNS · SMTP · POP3]
+        DIR[Diretoria] --- GER[Gerência] --- RH[RH] --- MKT[Marketing]
+    end
+    subgraph MAT[🛒 Matriz]
+        direction LR
+        CX[Caixas] --- PAD[Padaria] --- ACO[Açougue] --- GRA[Granel]
+        CAM[📹 Câmeras] --- IOT[🌡️ IoT · portas e<br>ar-condicionado]
+    end
+    subgraph FIL[🏪 Filial]
+        F1[Mesma planta da matriz,<br>em escala menor]
+    end
+    ESC <==>|IPv6| MAT
+    ESC <==>|IPv6| FIL
+```
+
+## As três unidades
+
+| Unidade | Papel |
+|---|---|
+| **Escritório administrativo** | Gestão, servidores e RH. Dividido em Diretoria, Gerência, RH e Marketing; gateway padrão `FE80::1` e núcleo de servidores WEB e DNS |
+| **Matriz** | Unidade completa: atendimento, caixas, granel, padaria, açougue e monitoramento por câmeras |
+| **Filial** | Menor e mais prática. Segue a planta da matriz, com equipamentos padronizados para facilitar a manutenção |
+
+## Destaques técnicos
+
+- **IPv6** com `unicast-routing` e endereços link-local (`FE80::1`).
+- **Serviços de rede**: DNS, WEB, SMTP e POP3 para a comunicação interna e externa.
+- **E-mail entre unidades** com servidores SMTP/POP3.
+- **IoT**: portas automáticas e ar-condicionado controlados pela rede.
+- **Hubs trocados por switches**, para gerenciar melhor os pacotes e suportar IPv6.
+- **Segmentação por setor** no escritório, para mais organização e segurança.
+
+## Neste repositório
+
+| Arquivo | Conteúdo |
+|---|---|
+| [`cisco_pi_planta_2_em_21-09-2020_3_2_1.pkt`](cisco_pi_planta_2_em_21-09-2020_3_2_1.pkt) | Simulação da rede no Cisco Packet Tracer |
+| [`PI_segundo_periodo_5.docx`](PI_segundo_periodo_5.docx) | Relatório completo, com os comandos de configuração |
+
+## Como abrir
+
+1. Baixe o arquivo `.pkt`.
+2. Abra no **Cisco Packet Tracer** (recomendado: versão 8.x).
+3. Para os comandos de configuração, consulte o relatório `.docx`.
+
+## Autores
+
+| | |
+|---|---|
+| **Cristian Yehudi Marques Ros** | **Fabrício Corrêa de Souza** |
+| **Matheus Gonçalves Gotardo** | **Nicole Guerreiro Diniz** |
+
+Centro Universitário Campos de Andrade (UNIANDRADE).
 
 ---
-[cite_start]**Autores:** Cristian Yehudi Marques Ros, Fabricio Corrêa de Souza, Matheus Gonçalves Gotardo e Nicole Guerreiro Diniz[cite: 1].
-[cite_start]**Instituição:** Centro Universitário Campos de Andrade (UNIANDRADE)[cite: 2].
+
+<div align="center">
+<sub>Mais projetos: <a href="https://github.com/GotardoN1/grafo-social">Grafo Social</a> · <a href="https://github.com/GotardoN1/jogo-repita-a-sequencia">Repita a Sequência</a> · <a href="https://gotardon1.github.io/GotardoN1/#projetos">todos no portfólio</a></sub>
+</div>
